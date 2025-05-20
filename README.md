@@ -34,6 +34,7 @@ Zusätzlich wurde ein OLED-Display integriert, das auf Knopfdruck (über GPIO2) 
 Einige Verbindungen, insbesondere für Stromversorgung und Signalverbindungen zum Display, wurden fest verlötet, da sich Steckverbindungen beim Einbau als instabil erwiesen hatten.
 
 ![Alternativtext](img/Klimamonitor_Steckplan.png)
+*Steckplan der Sensoren auf dem Breadboard*
 
 ### 8.	Stromversorgung im Aussenbetrieb
 Es wurde ein passender LiPo-Akku mit “Always-On”-Funktion beschafft, um den autonomen Betrieb im Freien sicherzustellen. Der Akku kann per USB-C geladen werden und versorgt die Wetterstation konstant mit Energie.
