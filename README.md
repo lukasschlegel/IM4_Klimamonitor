@@ -6,7 +6,7 @@ Ziel dieses Projekts war die Entwicklung einer autonomen Wetterstation auf Basis
 Zusätzlich wurde ein OLED-Display mit Taster integriert, das auf Knopfdruck die aktuellen Messwerte direkt an der Station anzeigt. Die gesamte Elektronik wurde in einem wetterfesten Gehäuse untergebracht, ergänzt durch ein 3D-gedrucktes Zusatzgehäuse für Display und Button.
 
 Die Messdaten werden über eine eigene Webseite visualisiert. Dort können Nutzer zwischen Tages- und Wochenansicht wechseln, die aktuelle Messung abrufen und den Darkmode manuell oder automatisch aktivieren. Das Projekt verbindet Mikrocontroller-Programmierung, Webentwicklung, Datenbank-Integration und Hardwaredesign in einem praxisnahen Anwendungskontext.
-### 4 Ablauf
+## Ablauf
 
 #### 1. Projektidee und Konzeption
 Zunächst hatten wir die Idee, eine Wetterstation zu bauen. Durch zwei Interviews im näheren Umfeld konnten wir zusätzliche Bedürfnisse identifizieren und in die Planung aufnehmen. Anschliessend erstellten wir ein Flussdiagramm, um den Ablauf – von der Datenerfassung über Sensoren bis hin zur Visualisierung auf einer Website – zu veranschaulichen.
