@@ -2,4 +2,4 @@
 Studienprojekt aus dem 4. Semester des Studiengangs Multimedia Production im Modul ‚Interaktive Medien‘
 
 
-![Alternativtext](imag/Klimamonitor_Screenflow.jpg)
+![Alternativtext](img/Klimamonitor_Screenflow.jpg)
