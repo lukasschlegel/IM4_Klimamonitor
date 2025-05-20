@@ -42,3 +42,48 @@ Es wurde ein passender LiPo-Akku mit “Always-On”-Funktion beschafft, um den 
 ### 9. Frontend & Datenvisualisierung
 Abschliessend wurde eine Webseite mit HTML, CSS und JavaScript umgesetzt, auf der die Messdaten grafisch dargestellt werden. Die Ansicht lässt sich per Button zwischen Tages- und Wochenansicht umschalten. Zusätzlich kann die jeweils letzte Messung per Klick eingeblendet werden.
 Die Seite enthält ausserdem ein manuell und automatisch schaltbares Darkmode-Feature: per Button (Mondsymbol oben rechts) oder automatisch bei Dunkelheit, sobald der Lichtwert unter eine definierte Schwelle fällt und dies in der Datenbank entsprechend vermerkt wird.
+
+## Verworfene Lösungen & Umplanung
+
+Zu Beginn wurden verschiedene I/O-Pins für Sensoren und das Display ausprobiert. Dabei kam es zu einem unerwarteten Problem:
+Die WLAN-Funktion des ESP32-C6 fiel komplett aus, sobald bestimmte Pins (z. B. GPIO6/7) verwendet wurden. Ursache war eine Überschneidung mit internen Flash/RF-Funktionen. Dieses Verhalten war nicht dokumentiert, was zu intensiver Fehlersuche führte.
+Letztlich wurde das OLED-Display auf sichere Pins (GPIO 4 & 5) gelegt – danach funktionierte WLAN wieder zuverlässig. Auch die automatische Netzwerkanmeldung schlug mehrfach fehl, bis schliesslich ein Reset aller gespeicherten WLAN-Profile und ein manuelles Zurücksetzen des Boards (inkl. WiFi.disconnect(true, true)) das Problem lösten.
+
+## Designentscheidungen & Hardware
+
+Für den Aussenbetrieb wurde ein bereits bestehendes Thermometergehäuse gewählt, das sich durch seine Wetterschutz-Lamellen optimal für Temperatur- und Luftfeuchtigkeitsmessung eignet. Zusätzlich wurde ein eigenes Displaygehäuse entworfen, zuerst mit Karton getestet, dann mit dem 3D-Drucker realisiert. Das Display sowie der Taster konnten so direkt an der Messstation montiert und vor Regen geschützt werden.
+Ein passender “Always-On”-Akku wurde beschafft, um dauerhaft Strom im Deep-Sleep-Betrieb zu gewährleisten.
+
+## Fehlschläge & Debugging
+
+Ein grosser Teil der Zeit floss in die Fehlersuche bei der WLAN-Verbindung, die mehrfach nicht funktionierte, obwohl SSID und Passwort korrekt waren. Die Ursache lag letztlich in:
+	•	falscher Pinbelegung (GPIOs mit Systemfunktionen)
+	•	falscher Frequenzband-Nutzung (5 GHz statt 2.4 GHz)
+	•	Routerkonfigurationen (Smart Connect, Kanäle > 11)
+
+Auch die Verwendung von analogen Pins (Lichtsensor) und die Auflösung (analogReadResolution) musste angepasst werden, damit stabile Messwerte erzielt wurden.
+
+## Lerneffekt & neue Fähigkeiten
+
+Durch die vielfältigen technischen Herausforderungen entstand ein starker Lerneffekt:
+	•	Sicherer Umgang mit ESP32-C6, Deep-Sleep, RTC und GPIOs
+	•	Verständnis von I2C-Kommunikation und Konflikten mit Systempins
+	•	Anwendung von WiFi-Debugging, Statuscodes und Netzwerkscan
+	•	Umsetzung von PHP-Backends für IoT-Datenempfang
+	•	Aufbau eines Chart.js-Dashboards mit Umschaltlogik, Live-Daten und Darkmode
+	•	Einsatz von 3D-Druck-Prototyping und Gehäuseintegration
+	•	Nutzung von internem Pullup für Buttons ohne externe Bauteile
+
+## Aufgabenverteilung & Tools
+
+Das Projekt wurde eigenständig umgesetzt – von der Hardwareverkabelung über die Serveranbindung bis hin zur Weboberfläche.
+Zur Unterstützung kamen verschiedene Hilfsmittel zum Einsatz, darunter:
+	•	ChatGPT für Fehlersuche, Codekorrekturen und konzeptionelle Unterstützung
+	•	Arduino IDE zum Programmieren und Testen
+	•	phpMyAdmin für Datenbankpflege
+	•	Figma & 3D-Drucker für Design und Gehäuseentwicklung
+
+## Known Bugs
+
+	•	Bei schlechtem WLAN-Empfang kann die Datenübertragung fehlschlagen – hierfür wäre eine Retry-Logik oder lokale Zwischenspeicherung sinnvoll
+	•	Bei langem Deep Sleep kann es zu Zeitabweichungen kommen (fehlende RTC-Zeitkorrektur via NTP bei jedem Start)
