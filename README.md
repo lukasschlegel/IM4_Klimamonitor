@@ -13,7 +13,7 @@ Zunächst hatten wir die Idee, eine Wetterstation zu bauen. Durch zwei Interview
 Darauf basierend entwickelten wir in Figma ein UX-Design, das den Aufbau und die Funktionsweise der Weboberfläche grafisch darstellt.
 
 ![Alternativtext](img/Klimamonitor_Screenflow.png)
-*Abb. 1: Datenfluss der Wetterstation vom Sensor bis zur Webvisualisierung*
+*Datenfluss der Wetterstation vom Sensor bis zur Webvisualisierung*
 
 ### 2. Sensoranbindung und Datenerfassung
 Zuerst wurde der ESP32-C6 mit den Sensoren DHT11 (Temperatur und Luftfeuchtigkeit) und einem Lichtsensor LM393-Modul (Lichtmessung) auf einem Breadboard verbunden. Die Werte wurden dann mithilfe des seriellen Monitors in der Arduino IDE ausgelesen, um die Funktion der Sensoren zu verifizieren.
