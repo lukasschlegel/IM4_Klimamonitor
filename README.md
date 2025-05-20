@@ -1,4 +1,4 @@
-# Klimamonitor
+# Dokumentation Klimamonitor
 
 ## Projektbeschreibung
 Ziel dieses Projekts war die Entwicklung einer autonomen Wetterstation auf Basis eines ESP32-C6-Mikrocontrollers. Die Station erfasst Temperatur, Luftfeuchtigkeit und Lichtintensität mithilfe von Sensoren und speichert die Messwerte automatisiert in einer Online-Datenbank. Um einen energiesparenden Betrieb im Aussenbereich zu ermöglichen, wurde der Mikrocontroller so programmiert, dass er im Deep-Sleep-Modus betrieben wird und nur stündlich für eine Messung aufwacht.
