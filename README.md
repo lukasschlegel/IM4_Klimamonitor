@@ -3,3 +3,5 @@ Studienprojekt aus dem 4. Semester des Studiengangs Multimedia Production im Mod
 
 
 ![Alternativtext](img/Klimamonitor_Screenflow.png)
+
+![Alternativtext](img/Klimamonitor_Steckplan.png)
