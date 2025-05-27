@@ -47,7 +47,8 @@ Abschliessend wurde eine Webseite mit HTML, CSS und JavaScript umgesetzt, auf de
 Die Seite enthält ausserdem ein manuell und automatisch schaltbares Darkmode-Feature: per Button (Mondsymbol oben rechts) oder automatisch bei Dunkelheit, sobald der Lichtwert unter eine definierte Schwelle fällt und dies in der Datenbank entsprechend vermerkt wird.
 
 [![kurzes Demovideo](https://img.youtube.com/vi/1o1nExjtgcQ/0.jpg)](https://youtu.be/1o1nExjtgcQ "kurzes Demovideo")
-*Datenfluss der Wetterstation vom Sensor bis zur Webvisualisierung*
+
+*Kurzes Demovideo*
 
 ## Verworfene Lösungen & Umplanung
 
