@@ -46,6 +46,8 @@ Es wurde ein passender LiPo-Akku mit “Always-On”-Funktion beschafft, um den 
 Abschliessend wurde eine Webseite mit HTML, CSS und JavaScript umgesetzt, auf der die Messdaten grafisch dargestellt werden. Die Ansicht lässt sich per Button zwischen Tages- und Wochenansicht umschalten. Zusätzlich kann die jeweils letzte Messung per Klick eingeblendet werden.
 Die Seite enthält ausserdem ein manuell und automatisch schaltbares Darkmode-Feature: per Button (Mondsymbol oben rechts) oder automatisch bei Dunkelheit, sobald der Lichtwert unter eine definierte Schwelle fällt und dies in der Datenbank entsprechend vermerkt wird.
 
+[![kurzes Demovideo](https://img.youtube.com/vi/1o1nExjtgcQ/0.jpg)](https://youtu.be/1o1nExjtgcQ "kurzes Demovideo")
+
 ## Verworfene Lösungen & Umplanung
 
 Zu Beginn wurden verschiedene I/O-Pins für Sensoren und das Display ausprobiert. Dabei kam es zu einem unerwarteten Problem:
