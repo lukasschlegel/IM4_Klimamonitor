@@ -18,6 +18,10 @@ Darauf basierend entwickelten wir in Figma ein UX-Design, das den Aufbau und die
 ### 2. Sensoranbindung und Datenerfassung
 Zuerst wurde der ESP32-C6 mit den Sensoren DHT11 (Temperatur und Luftfeuchtigkeit) und einem Lichtsensor LM393-Modul (Lichtmessung) auf einem Breadboard verbunden. Die Werte wurden dann mithilfe des seriellen Monitors in der Arduino IDE ausgelesen, um die Funktion der Sensoren zu verifizieren.
 
+![Alternativtext](img/Klimamonitor_Loeten.png)
+*Löten am Projekt*
+
+
 ### 3. Datenbankeinrichtung und Anbindung
 Anschliessend wurde auf dem Webserver eine Datenbank über phpMyAdmin erstellt. Die Tabelle enthielt Felder für Temperatur, Luftfeuchtigkeit, Lichtwert und Zeitstempel. Mit einem selbst geschriebenen PHP-Skript (load.php) wurde eine Schnittstelle entwickelt, über die die Sensordaten via HTTP POST an die Datenbank übertragen werden konnten.
 
@@ -29,6 +33,9 @@ Um den Energieverbrauch zu minimieren, wurde der Deep-Sleep-Modus des ESP32 impl
 
 ### 5.	Wetterschutz und Gehäuse
 Um die Elektronik vor Witterungseinflüssen zu schützen, wurde ein fertiges Thermometergehäuse beschafft, das sich aufgrund der Bauform ideal für Umgebungs-Messgeräte eignet, ohne die Messwerte zu verfälschen.
+
+![Alternativtext](img/Klimamonitor_Prototyp.png)
+*Prototyp für den 3D-Druck*
 
 ### 6.	Anzeigeeinheit mit Buttonsteuerung
 Zusätzlich wurde ein OLED-Display integriert, das auf Knopfdruck (über GPIO2) eine aktuelle Einzelmessung anzeigt. Diese Funktion unterbricht temporär den Deep Sleep. Zur Montage des Displays am Gehäuse wurde zunächst ein Prototyp aus Karton gefertigt, anschliessend das finale Displaygehäuse im 3D-Druck erstellt und direkt an die Thermometerhülle geklebt. So konnten auch der Button und das Display wetterfest untergebracht werden.
