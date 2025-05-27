@@ -21,8 +21,8 @@ Zuerst wurde der ESP32-C6 mit den Sensoren DHT11 (Temperatur und Luftfeuchtigkei
 ### 3. Datenbankeinrichtung und Anbindung
 Anschliessend wurde auf dem Webserver eine Datenbank über phpMyAdmin erstellt. Die Tabelle enthielt Felder für Temperatur, Luftfeuchtigkeit, Lichtwert und Zeitstempel. Mit einem selbst geschriebenen PHP-Skript (load.php) wurde eine Schnittstelle entwickelt, über die die Sensordaten via HTTP POST an die Datenbank übertragen werden konnten.
 
-![Alternativtext](img/Klimamonitor_Steckplan.png)
-*Steckplan der Sensoren auf dem Breadboard*
+![Alternativtext](img/Klimamonitor_Komponentenplan.png)
+*Logische Verknüpfung des Projekts*
 
 ### 4. Energiesparmodus (Deep Sleep)
 Um den Energieverbrauch zu minimieren, wurde der Deep-Sleep-Modus des ESP32 implementiert. Der Mikrocontroller schaltet sich automatisch stündlich ein, führt eine Messung durch, sendet die Daten an den Server und geht danach wieder in den Tiefschlaf. Ziel war es, die Station später draussen mit Akku betreiben zu können.
