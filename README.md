@@ -18,7 +18,7 @@ Darauf basierend entwickelten wir in Figma ein UX-Design, das den Aufbau und die
 ### 2. Sensoranbindung und Datenerfassung
 Zuerst wurde der ESP32-C6 mit den Sensoren DHT11 (Temperatur und Luftfeuchtigkeit) und einem Lichtsensor LM393-Modul (Lichtmessung) auf einem Breadboard verbunden. Die Werte wurden dann mithilfe des seriellen Monitors in der Arduino IDE ausgelesen, um die Funktion der Sensoren zu verifizieren.
 
-![Alternativtext](img/Klimamonitor_Loeten.jpg)
+![Alternativtext](img/Klimamonitor_Loeten.JPG)
 *Löten am Projekt*
 
 
@@ -34,7 +34,7 @@ Um den Energieverbrauch zu minimieren, wurde der Deep-Sleep-Modus des ESP32 impl
 ### 5.	Wetterschutz und Gehäuse
 Um die Elektronik vor Witterungseinflüssen zu schützen, wurde ein fertiges Thermometergehäuse beschafft, das sich aufgrund der Bauform ideal für Umgebungs-Messgeräte eignet, ohne die Messwerte zu verfälschen.
 
-![Alternativtext](img/Klimamonitor_Prototyp.jpg)
+![Alternativtext](img/Klimamonitor_Prototyp.JPG)
 *Prototyp für den 3D-Druck*
 
 ### 6.	Anzeigeeinheit mit Buttonsteuerung
