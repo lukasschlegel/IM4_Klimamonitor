@@ -1,4 +1,15 @@
 <?php
+// ============================
+// WETTERSTATION – DATENAUSGABE
+// ============================
+//
+// Übersicht: In diesem Script
+// - wird eine Verbindung zur Datenbank aufgebaut
+// - werden alle Messwerte der letzten 7 Tage abgefragt
+// - werden Temperatur, Feuchtigkeit, Licht und Zeit sortiert zurückgegeben
+// - wird die Ausgabe als JSON formatiert (für JavaScript abrufbar)
+//
+
 require_once("../../private/config_wetterstation.php");
 
 try {
