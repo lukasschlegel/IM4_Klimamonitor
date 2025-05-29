@@ -1,0 +1,237 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: #d5e8f7;
+  color: #333;
+}
+
+/* Chartbereich */
+.chart-container {
+  position: relative;
+  width: 100%;
+  padding-top: 95px;
+  padding-left: 60px;
+  padding-right: 60px;
+  box-sizing: border-box;
+}
+
+canvas#climateChart {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.overlay-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.overlay-header-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  pointer-events: auto;
+}
+
+.logo-overlay {
+  height: 55px;
+  pointer-events: none;
+  z-index: 11;
+}
+
+/* Buttons oben */
+.chart-toolbar-overlay {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.chart-toolbar-overlay button {
+  background-color: #1c3c50;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  opacity: 0.95;
+  transition: background-color 0.2s ease;
+}
+
+.chart-toolbar-overlay button:hover {
+  background-color: #005FA3 !important;
+  color: white !important;
+}
+
+/* Mond/Sonne Icons */
+.mode-icons {
+  display: flex;
+  gap: 0.5rem;
+  pointer-events: auto;
+}
+
+.mode-icon {
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  transition: background-image 0.2s ease;
+}
+
+.moon-icon {
+  background-image: url("img/mond-light.webp");
+}
+
+.moon-icon:hover {
+  background-image: url("img/mond-hover.webp");
+}
+
+.sun-icon {
+  background-image: url("img/sonne-dark.webp");
+}
+
+.sun-icon:hover {
+  background-image: url("img/sonne-hover.webp");
+}
+
+.sun-icon.hidden,
+.moon-icon.hidden {
+  display: none !important;
+}
+
+/* Info-Overlay */
+.info-box-center {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #1c3c50;
+  color: white;
+  border-radius: 16px;
+  padding: 1.2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  min-width: 600px;
+  max-width: 95%;
+  text-align: center;
+  pointer-events: auto;
+  font-size: 14px;
+}
+
+.close-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 25px;
+  color: white;
+  cursor: pointer;
+}
+
+.popup-title {
+  font-size: 16px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.popup p,
+.messwert-wert {
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+/* Messwerte */
+.messwerte-zeile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.messwert-block {
+  flex: 1;
+  min-width: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.messwert-wert {
+  color: #d5e8f7;
+  margin: 0;
+}
+
+/* "Jetzt wechseln" Button — gemeinsame Basis */
+.confirm-button {
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 1rem;
+}
+
+/* Lightmode-Version */
+#darkModeOverlay .confirm-button {
+  background-color: #d5e8f7;
+  color: #1c3c50;
+}
+
+#darkModeOverlay .confirm-button:hover {
+  background-color: #005FA3;
+  color: white;
+}
+
+/* Darkmode-Version */
+#lightModeOverlay .confirm-button {
+  background-color: #1c3c50;
+  color: white;
+}
+
+#lightModeOverlay .confirm-button:hover {
+  background-color: #005FA3;
+  color: white;
+}
+
+/* Darkmode gesamt */
+body.darkmode {
+  background-color: #1c3c50 !important;
+}
+
+body.darkmode .chart-container canvas,
+body.darkmode .legend,
+body.darkmode .chartjs-legend li span {
+  color: #d5e8f7 !important;
+}
+
+body.darkmode .info-box-center,
+body.darkmode .info-overlay {
+  background-color: #d5e8f7 !important;
+  color: #1c3c50 !important;
+}
+
+body.darkmode .info-box-center .popup-title,
+body.darkmode .info-box-center .close-button,
+body.darkmode .info-box-center .messwert-wert {
+  color: #1c3c50 !important;
+}
+
+/* Verstecken */
+.hidden {
+  display: none !important;
+}
