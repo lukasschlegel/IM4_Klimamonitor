@@ -1,3 +1,22 @@
+/*
+  ==============================================
+  KlimaMonitor – zentrales CSS Styling
+  ==============================================
+  Dieses Stylesheet steuert:
+  - Layout des Chartbereichs und Overlays
+  - Farben, Schriftgrössen und Abstände
+  - Dark-/Lightmode Umschaltung
+  - Interaktive UI-Elemente wie Buttons, Popups und Messwertboxen
+  Struktur ist in folgende Abschnitte gegliedert:
+  - Grundlayout
+  - Chart-Bereich
+  - Overlay und Header
+  - Buttons + Icons
+  - Infofenster & Popups
+  - Darkmode
+  - Hilfsklassen und Farbklassen
+*/
+
 body {
   margin: 0;
   padding: 0;
@@ -10,9 +29,7 @@ body {
 .chart-container {
   position: relative;
   width: 100%;
-  padding-top: 95px;
-  padding-left: 60px;
-  padding-right: 60px;
+  padding: 95px 60px 0;
   box-sizing: border-box;
 }
 
@@ -21,6 +38,7 @@ canvas#climateChart {
   height: auto !important;
 }
 
+/* Header mit Logo, Buttons und Mode-Icons */
 .overlay-header {
   position: absolute;
   top: 0;
@@ -48,7 +66,7 @@ canvas#climateChart {
   z-index: 11;
 }
 
-/* Buttons oben */
+/* Buttons */
 .chart-toolbar-overlay {
   display: flex;
   gap: 0.5rem;
@@ -71,7 +89,7 @@ canvas#climateChart {
   color: white !important;
 }
 
-/* Mond/Sonne Icons */
+/* Dark/Lightmode Icons */
 .mode-icons {
   display: flex;
   gap: 0.5rem;
@@ -88,28 +106,16 @@ canvas#climateChart {
   transition: background-image 0.2s ease;
 }
 
-.moon-icon {
-  background-image: url("img/mond-light.webp");
-}
-
-.moon-icon:hover {
-  background-image: url("img/mond-hover.webp");
-}
-
-.sun-icon {
-  background-image: url("img/sonne-dark.webp");
-}
-
-.sun-icon:hover {
-  background-image: url("img/sonne-hover.webp");
-}
-
+.moon-icon { background-image: url("img/mond-light.webp"); }
+.moon-icon:hover { background-image: url("img/mond-hover.webp"); }
+.sun-icon { background-image: url("img/sonne-dark.webp"); }
+.sun-icon:hover { background-image: url("img/sonne-hover.webp"); }
 .sun-icon.hidden,
 .moon-icon.hidden {
   display: none !important;
 }
 
-/* Info-Overlay */
+/* Zentrale Info-Popups */
 .info-box-center {
   position: fixed;
   top: 50%;
@@ -119,10 +125,12 @@ canvas#climateChart {
   color: white;
   border-radius: 16px;
   padding: 1.2rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   z-index: 1000;
-  min-width: 600px;
-  max-width: 95%;
+  width: 90%;
+  max-width: 600px;
   text-align: center;
   pointer-events: auto;
   font-size: 14px;
@@ -140,10 +148,11 @@ canvas#climateChart {
 }
 
 .popup-title {
-  font-size: 16px;
-  margin-top: 5px;
-  margin-bottom: 15px;
+  font-size: 1.4em;
+  margin-top: 0.5em;
+  margin-bottom: 0.8em;
   font-weight: bold;
+  text-align: center;
 }
 
 .popup p,
@@ -152,7 +161,7 @@ canvas#climateChart {
   margin-bottom: 20px;
 }
 
-/* Messwerte */
+/* Messwert-Box */
 .messwerte-zeile {
   display: flex;
   justify-content: space-between;
@@ -174,7 +183,7 @@ canvas#climateChart {
   margin: 0;
 }
 
-/* "Jetzt wechseln" Button — gemeinsame Basis */
+/* Bestätigungsbuttons */
 .confirm-button {
   border: none;
   padding: 0.6rem 1.2rem;
@@ -186,29 +195,25 @@ canvas#climateChart {
   margin-top: 1rem;
 }
 
-/* Lightmode-Version */
 #darkModeOverlay .confirm-button {
   background-color: #d5e8f7;
   color: #1c3c50;
 }
-
 #darkModeOverlay .confirm-button:hover {
   background-color: #005FA3;
   color: white;
 }
 
-/* Darkmode-Version */
 #lightModeOverlay .confirm-button {
   background-color: #1c3c50;
   color: white;
 }
-
 #lightModeOverlay .confirm-button:hover {
   background-color: #005FA3;
   color: white;
 }
 
-/* Darkmode gesamt */
+/* Darkmode Farben */
 body.darkmode {
   background-color: #1c3c50 !important;
 }
@@ -231,7 +236,62 @@ body.darkmode .info-box-center .messwert-wert {
   color: #1c3c50 !important;
 }
 
-/* Verstecken */
+body.darkmode .white-link {
+  color: #1c3c50 !important;
+}
+
+/* Hilfsklassen */
 .hidden {
+  display: none !important;
+}
+
+.white-link {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* Farbliche Legenden-Texte */
+.legend-temp { color: #ff6384; font-weight: bold; }
+.legend-hum { color: #36a2eb; font-weight: bold; }
+.legend-avg { color: green; font-weight: bold; }
+.legend-range { color: orange; font-weight: bold; }
+.legend-extreme { color: #c00000; font-weight: bold; }
+
+/* Überschriften in InfoBox */
+#infoOverlay h4 {
+  font-size: 1.1em;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+
+/* Copyright */
+.copyright-hinweis {
+  text-align: center;
+  margin-top: 2em;
+  font-size: 0.8em;
+}
+/* Blocker bei mobiler Andicht */
+#mobileBlocker {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #1c3c50;
+  color: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  z-index: 5000;
+  width: auto;
+  max-width: 500px;
+  text-align: center;
+}
+
+body.blocked {
+  overflow: hidden;
+}
+
+body.blocked > *:not(#mobileBlocker) {
   display: none !important;
 }
