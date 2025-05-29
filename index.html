@@ -1,3 +1,14 @@
+<!--
+  ==============================================
+  KlimaMonitor – HTML Struktur
+  ==============================================
+  Dieses HTML zeigt:
+  - eine Wetterstations-Webseite mit Dark-/Lightmode
+  - einen Chart zur Anzeige von Temperatur und Feuchtigkeit
+  - Info-Overlays mit Messwerten und Projektinfos
+  - Mobile-Warnungen und interaktive Umschaltflächen
+-->
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -9,63 +20,100 @@
 </head>
 <body>
   <section class="chart-container">
+    <!-- Kopfbereich mit Logo, Buttons und Mode-Switch -->
     <div class="overlay-header">
       <div class="overlay-header-left">
         <img id="klimamonitorLogo" src="img/klimamonitor-logo-light.webp" alt="KlimaMonitor Logo" class="logo-overlay" />
         <div class="chart-toolbar-overlay">
           <button onclick="toggleMessboxen()">Aktuelle Messung</button>
           <button id="toggleViewBtn" onclick="toggleZeitraum()">Wochenansicht</button>
-          <button onclick="toggleInfoBox()">Info</button>
+          <button onclick="toggleInfoBox()">Über die Daten</button>
         </div>
       </div>
-
       <div class="mode-icons">
         <div class="mode-icon moon-icon" onclick="document.getElementById('darkModeOverlay').classList.remove('hidden')" title="Dark Mode aktivieren"></div>
         <div class="mode-icon sun-icon hidden" onclick="document.getElementById('lightModeOverlay').classList.remove('hidden')" title="Light Mode aktivieren"></div>
       </div>
     </div>
 
-    <!-- Info-Fenster Messwerte -->
+    <!-- Popup mit aktuellen Messwerten -->
     <div class="info-box-center hidden" id="infoBoxes">
       <button class="close-button" onclick="toggleMessboxen()">×</button>
       <div class="messwerte-zeile">
         <div class="messwert-block">
-          <div class="popup-title">Temperatur</div>
+          <h4 class="popup-title">Temperatur</h4>
           <div id="tempValue" class="messwert-wert">-- °C</div>
         </div>
         <div class="messwert-block">
-          <div class="popup-title">Luftfeuchtigkeit</div>
+          <h4 class="popup-title">Luftfeuchtigkeit</h4>
           <div id="humValue" class="messwert-wert">-- %</div>
         </div>
         <div class="messwert-block">
-          <div class="popup-title">Licht</div>
+          <h4 class="popup-title">Licht</h4>
           <div id="lightValue" class="messwert-wert">--</div>
         </div>
       </div>
     </div>
-<div id="mobileWarningPopup" class="info-box-center hidden">
-  <button class="close-button" onclick="closeMobilePopup()">×</button>
-  <h2 class="popup-title">Hinweis</h2>
-  <p>
-    Diese Seite ist leider nicht für mobile Geräte optimiert.<br>
-    Bitte besuche sie auf einem grösseren Bildschirm.
-  </p>
-</div>
-    <!-- Info-Overlay -->
-    <div id="infoOverlay" class="info-box-center hidden">
-      <button class="close-button" onclick="toggleInfoBox()">×</button>
-      <h2 class="popup-title">Informationen zum Projekt</h2>
+
+    <!-- Hinweis bei Nutzung auf kleinen Geräten -->
+    <div id="mobileWarningPopup" class="info-box-center hidden">
+      <button class="close-button" onclick="closeMobilePopup()">×</button>
+      <h2 class="popup-title">Hinweis</h2>
       <p>
-        Die Referenzdaten stammen aus der Zeitperiode von 1991–2020 aus einer 
-        <a href="climate-reports-climsheet_1991-2020_WAE_de.pdf" download="Referenzdaten_Wädenswil.pdf">
-          Wetterstation
-        </a>
-        in 8820 Wädenswil. Diese befindet sich 1.95 km von der eigenen Messstation entfernt,
-        es kann deshalb zu leichten Abweichungen kommen.
+        Diese Seite ist leider nicht für mobile Geräte optimiert.<br>
+        Bitte besuche sie auf einem grösseren Bildschirm.
       </p>
     </div>
 
-    <!-- Darkmode Overlay -->
+    <!-- Infobox mit Projektbeschreibung -->
+    <div id="infoOverlay" class="info-box-center hidden">
+      <button class="close-button" onclick="toggleInfoBox()">×</button>
+      <h2 class="popup-title">Informationen zum Projekt</h2>
+
+      <h4>Eigene Messstation</h4>
+      <p>
+        Die lokalen Wetterdaten werden mit einem <strong>DHT11-Sensor</strong> auf einem <strong>ESP32-C6</strong>-Mikrocontroller erfasst. 
+        Zusätzlich ist ein <strong>LM393-Lichtsensor</strong> verbaut, der mithilfe eines definierten Schwellwerts erkennt, ob es hell oder dunkel ist. 
+        Erkennt der Sensor Dunkelheit, schaltet die Webseite automatisch in den <strong>Darkmode</strong>. 
+        Die Messungen erfolgen im Stundenintervall oder bei Bedarf manuell.
+      </p>
+
+      <h4>Klimareferenzdaten</h4>
+      <p>
+        Die Vergleichswerte stammen aus der Normperiode <strong>1991–2020</strong> und basieren auf den Aufzeichnungen einer 
+        <a href="climate-reports-climsheet_1991-2020_WAE_de.pdf" download="Referenzdaten_Wädenswil.pdf" class="white-link">
+          Wetterstation</a>
+        in 8820 Wädenswil. Diese befindet sich ca. <strong>1.95 km</strong> von der eigenen Messstation entfernt. 
+        Leichte Abweichungen sind daher möglich.
+      </p>
+
+      <h4>Diagrammanzeige</h4>
+      <p>
+        Die <span class="legend-temp">rote Linie</span> zeigt die aktuelle Temperatur (°C), 
+        die <span class="legend-hum">blaue Linie</span> die Luftfeuchtigkeit (%). 
+        Die <span class="legend-avg">grüne gestrichelte Linie</span> stellt den klimatischen Mittelwert dar. 
+        Die <span class="legend-range">orange Fläche</span> markiert den üblichen Klimabereich (Minimum–Maximum) 
+        auf Basis der Referenzwerte. Zusätzlich zeigen zwei durchgehende <span class="legend-extreme">rote Linien</span> 
+        die klimatischen Extremwerte an – also die <strong>tiefste und höchste gemessene Temperatur</strong> 
+        im jeweiligen Monat zwischen 1991 und 2020.
+      </p>
+
+      <h4>Hinweise zur Bedienung</h4>
+      <p>
+        Über die Schaltfläche <strong>«Tagesansicht / Wochenansicht»</strong> kann zwischen den Zeiträumen gewechselt werden. 
+        Einzelne Messwerte werden beim Überfahren mit der Maus eingeblendet.
+      </p>
+      <p>
+        Ein Klick auf <strong>«Aktuelle Messung»</strong> zeigt die zuletzt gespeicherte Messung an.
+      </p>
+
+      <!-- Copyright Hinweis -->
+      <footer class="copyright-hinweis">
+        © <span id="copyright-jahr">2025</span> Lukas Schlegel
+      </footer>
+    </div>
+
+    <!-- Overlay für Umschaltung zu Darkmode -->
     <div id="darkModeOverlay" class="info-box-center hidden">
       <button class="close-button" onclick="closeDarkModeOverlay()">×</button>
       <h2 class="popup-title">Darkmode</h2>
@@ -76,7 +124,7 @@
       <button id="darkModeConfirmButton" class="confirm-button" onclick="activateDarkMode()">Jetzt wechseln</button>
     </div>
 
-    <!-- Lightmode Overlay -->
+    <!-- Overlay für Umschaltung zu Lightmode -->
     <div id="lightModeOverlay" class="info-box-center hidden">
       <button class="close-button" onclick="closeLightModeOverlay()">×</button>
       <h2 class="popup-title">Lightmode</h2>
@@ -87,19 +135,29 @@
       <button id="lightModeConfirmButton" class="confirm-button" onclick="activateLightMode()">Jetzt wechseln</button>
     </div>
 
-    <!-- Diagramm -->
+    <!-- Das Hauptdiagramm -->
     <canvas id="climateChart"></canvas>
   </section>
-<div id="mobileWarningOverlay" class="mobile-overlay hidden">
-  <div class="info-box-center">
-    <button class="close-button" onclick="closeMobileOverlay()">×</button>
-    <h2 class="popup-title">Hinweis</h2>
-    <p>
-      Diese Seite ist leider nicht für mobile Geräte optimiert.<br>
-      Bitte besuche sie auf einem grösseren Bildschirm.
-    </p>
+
+  <!-- Separater Hinweis für mobile Geräte (Overlay) -->
+  <div id="mobileWarningOverlay" class="mobile-overlay hidden">
+    <div class="info-box-center">
+      <button class="close-button" onclick="closeMobileOverlay()">×</button>
+      <h2 class="popup-title">Hinweis</h2>
+      <p>
+        Diese Seite ist leider nicht für mobile Geräte optimiert.<br>
+        Bitte besuche sie auf einem grösseren Bildschirm.
+      </p>
+    </div>
   </div>
+  <div id="mobileBlocker" class="info-box-center hidden">
+  <h2 class="popup-title">Hinweis</h2>
+  <p>
+    Diese Seite ist nicht für die mobile Ansicht optimiert.<br>
+    Bitte besuche sie auf einem grösseren Bildschirm (Desktop oder Tablet).
+  </p>
 </div>
+  <!-- Verlinktes Skript am Ende der Seite -->
   <script src="script.js"></script>
 </body>
 </html>
