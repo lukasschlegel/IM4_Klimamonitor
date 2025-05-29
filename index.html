@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Klimamonitor</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <section class="chart-container">
+    <div class="overlay-header">
+      <div class="overlay-header-left">
+        <img id="klimamonitorLogo" src="img/klimamonitor-logo-light.webp" alt="KlimaMonitor Logo" class="logo-overlay" />
+        <div class="chart-toolbar-overlay">
+          <button onclick="toggleMessboxen()">Aktuelle Messung</button>
+          <button id="toggleViewBtn" onclick="toggleZeitraum()">Wochenansicht</button>
+          <button onclick="toggleInfoBox()">Info</button>
+        </div>
+      </div>
+
+      <div class="mode-icons">
+        <div class="mode-icon moon-icon" onclick="document.getElementById('darkModeOverlay').classList.remove('hidden')" title="Dark Mode aktivieren"></div>
+        <div class="mode-icon sun-icon hidden" onclick="document.getElementById('lightModeOverlay').classList.remove('hidden')" title="Light Mode aktivieren"></div>
+      </div>
+    </div>
+
+    <!-- Info-Fenster Messwerte -->
+    <div class="info-box-center hidden" id="infoBoxes">
+      <button class="close-button" onclick="toggleMessboxen()">×</button>
+      <div class="messwerte-zeile">
+        <div class="messwert-block">
+          <div class="popup-title">Temperatur</div>
+          <div id="tempValue" class="messwert-wert">-- °C</div>
+        </div>
+        <div class="messwert-block">
+          <div class="popup-title">Luftfeuchtigkeit</div>
+          <div id="humValue" class="messwert-wert">-- %</div>
+        </div>
+        <div class="messwert-block">
+          <div class="popup-title">Licht</div>
+          <div id="lightValue" class="messwert-wert">--</div>
+        </div>
+      </div>
+    </div>
+<div id="mobileWarningPopup" class="info-box-center hidden">
+  <button class="close-button" onclick="closeMobilePopup()">×</button>
+  <h2 class="popup-title">Hinweis</h2>
+  <p>
+    Diese Seite ist leider nicht für mobile Geräte optimiert.<br>
+    Bitte besuche sie auf einem grösseren Bildschirm.
+  </p>
+</div>
+    <!-- Info-Overlay -->
+    <div id="infoOverlay" class="info-box-center hidden">
+      <button class="close-button" onclick="toggleInfoBox()">×</button>
+      <h2 class="popup-title">Informationen zum Projekt</h2>
+      <p>
+        Die Referenzdaten stammen aus der Zeitperiode von 1991–2020 aus einer 
+        <a href="climate-reports-climsheet_1991-2020_WAE_de.pdf" download="Referenzdaten_Wädenswil.pdf">
+          Wetterstation
+        </a>
+        in 8820 Wädenswil. Diese befindet sich 1.95 km von der eigenen Messstation entfernt,
+        es kann deshalb zu leichten Abweichungen kommen.
+      </p>
+    </div>
+
+    <!-- Darkmode Overlay -->
+    <div id="darkModeOverlay" class="info-box-center hidden">
+      <button class="close-button" onclick="closeDarkModeOverlay()">×</button>
+      <h2 class="popup-title">Darkmode</h2>
+      <p class="darkmode-text">
+        Diese Seite wechselt nachts automatisch ins Dunkeldesign – gesteuert durch den Lichtsensor der Wetterstation.<br><br>
+        Möchtest du jetzt schon wechseln?
+      </p>
+      <button id="darkModeConfirmButton" class="confirm-button" onclick="activateDarkMode()">Jetzt wechseln</button>
+    </div>
+
+    <!-- Lightmode Overlay -->
+    <div id="lightModeOverlay" class="info-box-center hidden">
+      <button class="close-button" onclick="closeLightModeOverlay()">×</button>
+      <h2 class="popup-title">Lightmode</h2>
+      <p class="darkmode-text">
+        Diese Seite wechselt am Tag automatisch ins helle Design – gesteuert durch den Lichtsensor der Wetterstation.<br><br>
+        Möchtest du jetzt schon wechseln?
+      </p>
+      <button id="lightModeConfirmButton" class="confirm-button" onclick="activateLightMode()">Jetzt wechseln</button>
+    </div>
+
+    <!-- Diagramm -->
+    <canvas id="climateChart"></canvas>
+  </section>
+<div id="mobileWarningOverlay" class="mobile-overlay hidden">
+  <div class="info-box-center">
+    <button class="close-button" onclick="closeMobileOverlay()">×</button>
+    <h2 class="popup-title">Hinweis</h2>
+    <p>
+      Diese Seite ist leider nicht für mobile Geräte optimiert.<br>
+      Bitte besuche sie auf einem grösseren Bildschirm.
+    </p>
+  </div>
+</div>
+  <script src="script.js"></script>
+</body>
+</html>
