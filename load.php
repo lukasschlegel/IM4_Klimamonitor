@@ -1,4 +1,16 @@
 <?php
+// ============================
+// WETTERSTATION – DATENEMPFANG
+// ============================
+//
+// Übersicht: In diesem Script
+// - wird eine Datenbankverbindung hergestellt
+// - werden JSON-Daten vom ESP32 empfangen
+// - wird geprüft, ob Temperatur, Feuchtigkeit und Licht übermittelt wurden
+// - werden diese Werte in die Datenbank gespeichert
+// - wird eine JSON-Antwort zurückgegeben
+//
+
 require_once("../../private/config_wetterstation.php");
 
 try {
