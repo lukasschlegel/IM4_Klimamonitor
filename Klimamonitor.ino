@@ -9,7 +9,7 @@
 #include <time.h>
 
 const char* ssid = "wgk-60478";
-const char* password = "aqqf-oq69-h24s-amqu";
+const char* password = "xxx";
 const char* serverURL = "https://lukasschlegel.ch/klimamonitor/load.php";
 
 #define DHTPIN 3
