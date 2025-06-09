@@ -100,6 +100,5 @@ Zur Unterstützung kamen verschiedene Hilfsmittel zum Einsatz, darunter:
 - Der ESP32-C6 Mikrocontroller benötigt eine stabile Versorgungsspannung von mindestens 3 Volt für eine zuverlässige WLAN-Nutzung – bei Unterspannung treten Verbindungsabbrüche auf  
 - Die WLAN-Verbindung schlägt gelegentlich fehl, wenn der Router auf 5 GHz funkt oder automatische Kanalwahl nutzt (z. B. Smart Connect) – nur 2.4 GHz-Netze sind kompatibel  
 - Die Nutzung bestimmter GPIOs (z. B. GPIO4/5) kann zu Systemkonflikten führen, da diese Pins für interne Flash/RF-Funktionen reserviert sind  
-- Bei sehr tiefen Temperaturen (< 0 °C) oder hoher Luftfeuchtigkeit könnten sich Messfehler ergeben – es gibt derzeit **keine Kalibrierlogik oder Kompensation**  
-- Der eingesetzte DHT11-Sensor hat eine relativ geringe Genauigkeit und langsame Reaktionszeit – bei schnellen Wetterumschwüngen ist die Aussagekraft eingeschränkt  
-- Die Seite lädt zwar zuverlässig, aber es fehlt eine Fehlermeldung bei ausbleibenden oder ungültigen Daten (z. B. bei Serverausfall oder Netzwerkfehler)
+- Bei sehr tiefen Temperaturen (< 0 °C) oder hoher Luftfeuchtigkeit könnten sich Messfehler ergeben – es gibt derzeit keine Kalibrierlogik oder Kompensation  
+- Der eingesetzte DHT11-Sensor hat eine relativ geringe Genauigkeit und langsame Reaktionszeit – bei schnellen Wetterumschwüngen ist die Aussagekraft eingeschränkt
