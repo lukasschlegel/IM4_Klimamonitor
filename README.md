@@ -59,16 +59,13 @@ Die Seite enthält ausserdem ein manuell und automatisch schaltbares Darkmode-Fe
 
 ## Verworfene Lösungen & Umplanung
 Während der Umsetzung des Projekts wurden verschiedene I/O-Pins für Sensoren und das Display ausprobiert. Dabei kam es zu einem unerwarteten Problem:
-Die WLAN-Funktion des ESP32-C6 fiel komplett aus, sobald bestimmte Pins (z. B. GPIO6/7) verwendet wurden. Ursache war eine Überschneidung mit internen Flash/RF-Funktionen. Dieses Verhalten war nicht dokumentiert, was zu intensiver Fehlersuche führte.
-Letztlich wurde das OLED-Display auf sichere Pins (GPIO 4 & 5) gelegt – danach funktionierte WLAN wieder zuverlässig. Auch die automatische Netzwerkanmeldung schlug mehrfach fehl, bis schliesslich ein Reset aller gespeicherten WLAN-Profile und ein manuelles Zurücksetzen des Boards (inkl. WiFi.disconnect(true, true)) das Problem lösten.
+Die WLAN-Funktion des ESP32-C6 fiel komplett aus, sobald bestimmte Pins (z. B. GPIO4/5) verwendet wurden. Ursache war eine Überschneidung mit internen Flash/RF-Funktionen. 
+Letztlich wurde das OLED-Display auf sichere Pins (GPIO 6 & 7) gelegt – danach funktionierte WLAN wieder zuverlässig. Auch die automatische Netzwerkanmeldung schlug mehrfach fehl, bis schliesslich ein Reset aller gespeicherten WLAN-Profile und ein manuelles Zurücksetzen des Boards (inkl. WiFi.disconnect(true, true)) das Problem lösten.
 
 ## Designentscheidungen & Hardware
-
 Für den Aussenbetrieb wurde ein bereits bestehendes Thermometergehäuse gewählt, das sich durch seine Wetterschutz-Lamellen optimal für Temperatur- und Luftfeuchtigkeitsmessung eignet. Zusätzlich wurde ein eigenes Displaygehäuse entworfen, zuerst mit Karton getestet, dann mit dem 3D-Drucker realisiert. Das Display sowie der Taster konnten so direkt an der Messstation montiert und vor Regen geschützt werden.
-Ein passender “Always-On”-Akku wurde beschafft, um dauerhaft Strom im Deep-Sleep-Betrieb zu gewährleisten.
 
 ## Fehlschläge & Debugging
-
 Ein grosser Teil der Zeit floss in die Fehlersuche bei der WLAN-Verbindung, die mehrfach nicht funktionierte, obwohl SSID und Passwort korrekt waren. Die Ursache lag letztlich in:
 	•	falscher Pinbelegung (GPIOs mit Systemfunktionen)
 	•	falscher Frequenzband-Nutzung (5 GHz statt 2.4 GHz)
@@ -98,5 +95,11 @@ Zur Unterstützung kamen verschiedene Hilfsmittel zum Einsatz, darunter:
 
 ## Known Bugs
 
-	•	Bei schlechtem WLAN-Empfang kann die Datenübertragung fehlschlagen – hierfür wäre eine Retry-Logik oder lokale Zwischenspeicherung sinnvoll
-	•	Bei langem Deep Sleep kann es zu Zeitabweichungen kommen (fehlende RTC-Zeitkorrektur via NTP bei jedem Start)
+- Bei schlechtem WLAN-Empfang kann die Datenübertragung fehlschlagen – hierfür wäre eine Retry-Logik oder lokale Zwischenspeicherung sinnvoll  
+- Bei langem Deep Sleep kann es zu Zeitabweichungen kommen (fehlende RTC-Zeitkorrektur via NTP bei jedem Start)  
+- Der ESP32-C6 Mikrocontroller benötigt eine stabile Versorgungsspannung von mindestens 3 Volt für eine zuverlässige WLAN-Nutzung – bei Unterspannung treten Verbindungsabbrüche auf  
+- Die WLAN-Verbindung schlägt gelegentlich fehl, wenn der Router auf 5 GHz funkt oder automatische Kanalwahl nutzt (z. B. Smart Connect) – nur 2.4 GHz-Netze sind kompatibel  
+- Die Nutzung bestimmter GPIOs (z. B. GPIO4/5) kann zu Systemkonflikten führen, da diese Pins für interne Flash/RF-Funktionen reserviert sind  
+- Bei sehr tiefen Temperaturen (< 0 °C) oder hoher Luftfeuchtigkeit könnten sich Messfehler ergeben – es gibt derzeit **keine Kalibrierlogik oder Kompensation**  
+- Der eingesetzte DHT11-Sensor hat eine relativ geringe Genauigkeit und langsame Reaktionszeit – bei schnellen Wetterumschwüngen ist die Aussagekraft eingeschränkt  
+- Die Seite lädt zwar zuverlässig, aber es fehlt eine Fehlermeldung bei ausbleibenden oder ungültigen Daten (z. B. bei Serverausfall oder Netzwerkfehler)
