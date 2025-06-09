@@ -38,7 +38,7 @@ Um die Elektronik vor Witterungseinflüssen zu schützen, wurde ein fertiges The
 Zusätzlich wurde ein OLED-Display integriert, das auf Knopfdruck (über GPIO2) eine aktuelle Einzelmessung anzeigt. Diese Funktion unterbricht temporär den Deep Sleep. Zur Montage des Displays am Gehäuse wurde zunächst ein Prototyp aus Karton gefertigt, anschliessend das finale Displaygehäuse im 3D-Druck erstellt und direkt an die Thermometerhülle geklebt. So konnten auch der Button und das Display wetterfest untergebracht werden.
 
 ![Alternativtext](img/Klimamonitor_Prototyp.JPG)
-*Prototyp für den 3D-Druck*
+*Konzeption eines 3-D Prototypen als Erweiterung des Gehäuses*
 
 ### 7.	Verkabelung und Lötarbeiten
 Einige Verbindungen, insbesondere für Stromversorgung und Signalverbindungen zum Display, wurden fest verlötet, da sich Steckverbindungen beim Einbau als instabil erwiesen hatten.
